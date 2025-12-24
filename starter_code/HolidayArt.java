@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Holiday ASCII Art Generator
  * 
@@ -16,6 +18,10 @@ public class HolidayArt {
         // TODO: Parse command-line argument for tree height (default: 5)
         int height = 5;
 
+        if (args.length > 0) {
+            height = Integer.parseInt(args[0]);
+        }
+
         // TODO: Print the tree
         printTree(height);
     }
@@ -26,6 +32,8 @@ public class HolidayArt {
      * @param height Number of branch levels (not including star and trunk)
      */
     public static void printTree(int height) {
+        Random random = new Random();
+        
         // TODO: Implement this method
         //
         // Steps:
@@ -35,6 +43,33 @@ public class HolidayArt {
         // - Calculate stars needed (1, 3, 5, 7, ...)
         // 3. Print the trunk (centered)
 
-        System.out.println("Implement me!");
+        // Print branches
+        for (int i = 0; i < height; i++) {
+
+        // Spaces
+        for (int j = 0; j < height - i - 1; j++) {
+            System.out.print(" ");
+        }
+
+        // Stars / ornaments
+        for (int k = 0; k < (2 * i + 1); k++) {
+            if (random.nextInt(4) == 0) {
+                System.out.print(random.nextBoolean() ? "o" : "O");
+            } else {
+                System.out.print("*");
+            }
+        }
+        System.out.println();
+    }
+
+    // Trunk
+    for (int i = 0; i < height - 2; i++) {
+        System.out.print(" ");
+    }
+    System.out.println("|||");
+
+    System.out.println();
+    System.out.println("Happy Holidays!");
+
     }
 }
